@@ -5,13 +5,13 @@
 
 
     <!-- Breadcrumb Start -->
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Checkout</span>
+                <nav class="breadcrumb bg-white mb-4 py-3 px-4 shadow-sm rounded" style="font-size: 14px;">
+                    <a class="breadcrumb-item text-decoration-none text-primary" href="{{ url('index') }}">🏠 Home</a>
+                    <a class="breadcrumb-item text-decoration-none text-primary" href="{{ url('shop') }}">🛍 Shop</a>
+                    <span class="breadcrumb-item active text-muted">📋 Shoping Cart</span>
                 </nav>
             </div>
         </div>

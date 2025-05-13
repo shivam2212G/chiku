@@ -2,14 +2,34 @@
 @section('title','Shop')
 @section('content')
 
+
+    <!-- Search Form Start -->
+<div class="col-lg-12 col-12 d-flex justify-content-center" style="padding-left: 62px; padding-right: 62px;margin-bottom: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <form action="{{ url('prosearch') }}" style="display: flex; width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden;">
+        <input
+            type="search"
+            class="w-100"
+            placeholder="🔍 Search for products"
+            name="search"
+            value="{{ old('search', $search) }}"
+            style="flex-grow: 1; padding: 12px 16px; border: none; font-size: 15px; outline: none;">
+        <button
+            type="submit"
+            style="padding: 12px 20px; background-color: #007bff; color: white; font-size: 15px; border: none; cursor: pointer; transition: background-color 0.3s;">
+            Search
+        </button>
+    </form>
+</div>
+<!-- Search Form End -->
+
     <!-- Breadcrumb Start -->
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop List</span>
+                <nav class="breadcrumb bg-white mb-4 py-3 px-4 shadow-sm rounded" style="font-size: 14px;">
+                    <a class="breadcrumb-item text-decoration-none text-primary" href="{{ url('index') }}">🏠 Home</a>
+                    <a class="breadcrumb-item text-decoration-none text-primary" href="{{ url('shop') }}">🛍 Shop</a>
+                    <span class="breadcrumb-item active text-muted">📋 Shoping Cart</span>
                 </nav>
             </div>
         </div>
@@ -139,7 +159,7 @@
             <!-- Shop Sidebar End -->
 
 
-            <!-- Shop Product Start -->
+            {{-- <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-8">
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
@@ -169,13 +189,13 @@
                         </div>
                     </div>
                     @foreach ($products as $pro)
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                    <div class="col-lg-3 col-md-6 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
                                 <h6 class="text-muted ml-2">Cat:{{$pro->product_category}}</h6>
                                 <img class="card-img-top img-fluid" src="{{ url('myimages/'.$pro->product_image) }}" alt="Product Image" style="object-fit: cover; height: 300px;">
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="{{ route('addtocart',['id'=>$pro->product_id]) }}"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
@@ -199,20 +219,70 @@
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div class="col-12">
-                        <nav>
-                          <ul class="pagination justify-content-center">
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                          </ul>
-                        </nav>
-                    </div> --}}
                 </div>
             </div>
-            <!-- Shop Product End -->
+            <!-- Shop Product End --> --}}
+            <!-- Shop Product Start -->
+<div class="col-lg-9 col-md-8">
+    <div class="row pb-3">
+        <div class="col-12 pb-3">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <button class="btn btn-sm btn-outline-primary"><i class="fa fa-th-large"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary ml-2"><i class="fa fa-bars"></i></button>
+                </div>
+                <div class="ml-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle" data-toggle="dropdown">Sort By</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Latest</a>
+                            <a class="dropdown-item" href="#">Popularity</a>
+                            <a class="dropdown-item" href="#">Best Rating</a>
+                        </div>
+                    </div>
+                    <div class="btn-group ml-2">
+                        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle" data-toggle="dropdown">Show</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">10</a>
+                            <a class="dropdown-item" href="#">20</a>
+                            <a class="dropdown-item" href="#">30</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @foreach ($products as $pro)
+        <div class="col-lg-4 col-md-6 col-sm-6 pb-4">
+            <div class="card product-item shadow-sm border-0">
+                <div class="product-img position-relative">
+                    <span class="badge badge-info position-absolute" style="top:10px; left:10px;">{{$pro->product_category}}</span>
+                    <img class="card-img-top img-fluid" src="{{ url('myimages/'.$pro->product_image) }}" alt="Product Image" style="height: 280px; object-fit: cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
+                    <div class="product-action text-center bg-transparent py-2">
+                        <a class="btn btn-outline-success btn-sm mx-1" href="{{ route('addtocart',['id'=>$pro->product_id]) }}"><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-danger btn-sm mx-1" href="#"><i class="far fa-heart"></i></a>
+                        <a class="btn btn-outline-info btn-sm mx-1" href="#"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <h6 class="card-title text-truncate mb-1">{{$pro->product_name}}</h6>
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <h5 class="text-primary mb-0">${{$pro->product_price}}</h5>
+                    </div>
+                    <div class="d-flex justify-content-center mb-2">
+                        @for ($i = 0; $i < 5; $i++)
+                            <small class="fa fa-star text-warning mr-1"></small>
+                        @endfor
+                        <small class="text-muted">(99)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+<!-- Shop Product End -->
+
         </div>
     </div>
     <!-- Shop End -->

@@ -4,6 +4,26 @@
 
 
 
+     <!-- Search Form Start -->
+<div class="col-lg-12 col-12 d-flex justify-content-center" style="padding-left: 62px; padding-right: 62px;margin-bottom: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <form action="{{ url('prosearch') }}" style="display: flex; width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden;">
+        <input
+            type="search"
+            class="w-100"
+            placeholder="🔍 Search for products"
+            name="search"
+            value="{{ old('search', $search) }}"
+            style="flex-grow: 1; padding: 12px 16px; border: none; font-size: 15px; outline: none;">
+        <button
+            type="submit"
+            style="padding: 12px 20px; background-color: #007bff; color: white; font-size: 15px; border: none; cursor: pointer; transition: background-color 0.3s;">
+            Search
+        </button>
+    </form>
+</div>
+<!-- Search Form End -->
+
+
     <!-- Carousel Start -->
     <div class="container-fluid mb-3">
         <div class="row px-xl-5">
@@ -137,7 +157,7 @@
                         <img class="img-fluid w-100" src="{{ url('myimages/'.$pro->product_image) }}" alt=""
                              style="height: 300px; object-fit: cover;">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{{ route('addtocart',['id'=>$pro->product_id]) }}"><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>

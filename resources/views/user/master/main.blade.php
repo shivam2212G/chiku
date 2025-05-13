@@ -27,37 +27,41 @@
 </head>
 
 <body>
+
     <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
-            <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
-                </a>
-            </div>
-            <div class="col-lg-4 col-6 text-left">
-                <form action="{{ url('prosearch') }}">
-                    <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Search for products" name="search" value="{{ old('search', $search) }}">
-                    </div>
-                    <button type="submit">Search
-                        {{-- <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div> --}}
+<div class="container-fluid">
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex shadow-sm rounded-bottom">
+
+        <!-- Logo Section -->
+        <div class="col-lg-8">
+            <a href="#" class="text-decoration-none d-flex align-items-center">
+                <span class="h1 text-uppercase text-primary bg-dark px-3 py-1 rounded-start">Multi</span>
+                <span class="h1 text-uppercase text-light bg-primary px-3 py-1 rounded-end ml-n2">Shop</span>
+            </a>
+        </div>
+
+        <!-- User Info Section -->
+        <div class="col-lg-4 col-6 mx-auto" style="background: #ffffff; padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <!-- User Details -->
+                <div style="display: flex; flex-direction: column;">
+                    <p style="margin: 0; font-weight: 600; font-size: 16px; color: #2c3e50;">👤 {{ Auth::user()->name }}</p>
+                    <span style="font-size: 13px; color: #7f8c8d;">📧 {{ Auth::user()->email }}</span>
+                </div>
+
+                <!-- Logout Button -->
+                <form action="{{ route('logout') }}" method="POST" class="ml-3">
+                    @csrf
+                    <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: background-color 0.3s;">
+                        Log Out
                     </button>
                 </form>
             </div>
-            <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Customer Service</p>
-                <h5 class="m-0">+012 345 6789</h5>
-            </div>
         </div>
     </div>
-    <!-- Topbar End -->
-
+</div>
+<!-- Topbar End -->
 
     <!-- Navbar Start -->
     <div class="container-fluid bg-dark mb-30">
@@ -106,7 +110,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="{{ route('cart') }}" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{ route('usercart') }}" class="dropdown-item">Shopping Cart</a>
                                     <a href="{{ route('checkout') }}" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>

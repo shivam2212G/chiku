@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\Auth\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +26,22 @@ Route::get('/test-email', function () {
     return 'Email sent!';
 });
 
-Route::get('/',[MyController::class,'index'])->name('index');
+Route::get('/index',[MyController::class,'index'])->name('index');
+Route::get('/addtocart/{id}',[Mycontroller::class,'addtocart'])->name('addtocart');
 Route::get('/prosearch',[ProductController::class,'prosearch'])->name('prosearch');
-Route::get('/cart',function(){ return view('user.pages.cart');})->name('cart');
+Route::get('/usercart',[Mycontroller::class,'usercart'])->name('usercart');
+Route::get('/deletecart/{id}',[Mycontroller::class,'deletecart'])->name('deletecart');
 Route::get('/checkout',function(){ return view('user.pages.checkout');})->name('checkout');
 Route::get('/contact',function(){ return view('user.pages.contact');})->name('contact');
 Route::get('/detail',function(){ return view('user.pages.detail');})->name('detail');
-Route::get('/shop',[ProductController::class,'userproduct'])->name('shop');
+Route::get('/shop',[ProductController::class,'prosearch'])->name('shop');
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 
 //Admin
 Route::get('/admin/dashboard',function(){ return view('admin.pages.index');})->name('admin.dashboard');
+Route::get('/admin/userinfo',[MyController::class,'userinfo'])->name('admin.userinfo');
+Route::get('/admin/deleteuser/{id}',[MyController::class,'deleteuser'])->name('admin.deleteuser');
+
 
 //Contact
 Route::get('/admin/contact',[ContactController::class,'show'])->name('admin.contact');
@@ -56,6 +63,11 @@ Route::get('/admin/deleteproduct/{id}',[ProductController::class,'delpro'])->nam
 Route::get('/admin/editproduct/{id}',[ProductController::class,'edit'])->name('admin.editproduct');
 Route::put('/admin/editproduct/{id}',[ProductController::class,'update'])->name('admin.updateproduct');
 
-Auth::routes();
 
+Auth::routes([
+    'login' => false, // disable default login
+    ]);
+
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/', [LoginController::class, 'login']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

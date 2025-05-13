@@ -3,13 +3,15 @@
 @section('content')
 
 
+
+
     <!-- Breadcrumb Start -->
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <span class="breadcrumb-item active">Contact</span>
+                <nav class="breadcrumb bg-white mb-4 py-3 px-4 shadow-sm rounded" style="font-size: 14px;">
+                    <a class="breadcrumb-item text-decoration-none text-primary" href="{{ url('index') }}">🏠 Home</a>
+                    <span class="breadcrumb-item active text-muted">📋 Contact</span>
                 </nav>
             </div>
         </div>
